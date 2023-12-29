@@ -20,21 +20,41 @@ class PollingStation extends Thread { // Report votes
 }
 
 class Assistant {
-    private int count; // Total number of votes of the assistant
-    private String name; // Employee number of the assistant
+    private boolean unprocessedData = false; // Indicates if there is unprocessed data
+    private int count; // The total number of votes counted by the assistant
+    private String name; // The staff number of the assistant
 
     public synchronized void reportCount(String name, int count) {
+        while (unprocessedData) {
+            try {
+                wait(); // Wait for the unprocessed data to be processed
+            } catch (InterruptedException e) {}
+        }
+
         System.out.println(name + " polling station reports " + count + " votes");
         this.count = count;
         this.name = name;
+        unprocessedData = true; // Set the flag indicating there is new unprocessed data
+        notify(); // Notify waiting threads that new data is available
+        // notifyAll(); // Notify waiting threads that new data is available
     }
 
+
     public synchronized int getCount() {
-        return count;
+        while (!unprocessedData) {
+            try {
+                wait(); // Wait for new data to become available
+            } catch (InterruptedException e) {}
+        }
+        int value = count;
+        unprocessedData = false; // Reset the flag as data has been processed
+        notify(); // Notify any waiting threads that data has been processed
+        // notifyAll(); // Notify any waiting threads that data has been processed
+        return value;
     }
 }
 
-public class InterthreadCommunication_01 {
+public class InterthreadCommunication_02 {
     static int total = 0; // Total votes
     static int numOfStations = 2; // Number of polling stations
     static PollingStation[] stations;
@@ -56,14 +76,14 @@ public class InterthreadCommunication_01 {
             stations[i].start();
         }
 
-        // Wait for all polling stations to complete voting
-        for (int i = 0; i < numOfStations; i++) {
-            try {
-                stations[i].join();
-            } catch (InterruptedException e) {
-                // e.printStackTrace();
-            }
-        }
+        // // Wait for all polling stations to complete voting
+        // for (int i = 0; i < numOfStations; i++) {
+        //     try {
+        //         stations[i].join();
+        //     } catch (InterruptedException e) {
+        //         // e.printStackTrace();
+        //     }
+        // }
 
         System.out.printf("\n");
 
