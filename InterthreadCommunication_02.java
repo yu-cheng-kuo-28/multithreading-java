@@ -54,7 +54,7 @@ class Assistant {
     }
 }
 
-public class InterthreadCommunication_02 {
+class InterthreadCommunication_02 {
     static int total = 0; // Total votes
     static int numOfStations = 2; // Number of polling stations
     static PollingStation[] stations;
@@ -76,21 +76,14 @@ public class InterthreadCommunication_02 {
             stations[i].start();
         }
 
-        // // Wait for all polling stations to complete voting
-        // for (int i = 0; i < numOfStations; i++) {
-        //     try {
-        //         stations[i].join();
-        //     } catch (InterruptedException e) {
-        //         // e.printStackTrace();
-        //     }
-        // }
-
         System.out.printf("\n");
 
-        // Sum total votes
-        for (int i = 0; i < numOfStations * PollingStation.reportTimes; i++) {
-            total += a.getCount(); // Number of votes from each polling station
-            System.out.println("Current total votes: " + total);
+        // Sum total votes safely using synchronization
+        synchronized (a) {
+            for (int i = 0; i < numOfStations * PollingStation.reportTimes; i++) {
+                total += a.getCount(); // Number of votes from each polling station
+                System.out.println("Current total votes: " + total);
+            }
         }
 
         System.out.printf("\n");
