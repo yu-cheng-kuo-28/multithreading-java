@@ -1,30 +1,40 @@
 # multithreading-java
 Hands-On Multithreading with Java
 
-### Outline
+### (1) Outline of Code
 
-(0) Hello, World
+[1] Hello, World
 - HelloWorld.java
 
-(1) Multithreading
+[2] Multithreading
 - Multithreading_01.java
 - Multithreading_02.java
 - Multithreading_03.java
 
-(2) Deadlock
+[3] Deadlock
 - Deadlock_01.java
 - Deadlock_02.java
 - Deadlock_03.java
 
-(3) Vote Counter
+[4] Vote Counter
 - VoteCounter_01.java
 - VoteCounter_02.java
 - VoteCounter_03.java
 
-(4) Inter-thread Communication
+[5] Inter-thread Communication
 - InterthreadCommunication_01.java
 - InterthreadCommunication_02.java
 
-(5) JoinThread
+[6] JoinThread
 - JoinThread_01.java
 - JoinThread_02.java
+
+----
+
+### (2) Output 
+
+- InterthreadCommunication_02.java
+
+<div class="flexible-container">
+  <img src="2_pic/InterthreadCommunication_02.png" height="400">
+</div>
