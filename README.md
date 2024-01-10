@@ -33,7 +33,25 @@ Hands-On Multithreading with Java
 
 ### (2) Output 
 
-- InterthreadCommunication_02.java
+- 2-1 InterthreadCommunication_01.java
+
+[2-1-1] 1755 (Candidate_1) + 837 (Candidate_2) = 2592 > 1070 (Final total votes)
+
+<div class="flexible-container">
+  <img src="2_pic/InterthreadCommunication_01_1.png" height="400">
+</div>
+
+[2-1-2] 771 (Candidate_1) + 1591 (Candidate_2) = 2362 < 2610 (Final total votes)
+
+<div class="flexible-container">
+  <img src="2_pic/InterthreadCommunication_01_2.png" height="400">
+</div>
+
+<br><br>
+
+- 2-2 InterthreadCommunication_02.java
+
+[2-2-1] 1329 (Candidate_1) + 1578 (Candidate_2) = 2907 (Final total votes)
 
 <div class="flexible-container">
   <img src="2_pic/InterthreadCommunication_02.png" height="400">
